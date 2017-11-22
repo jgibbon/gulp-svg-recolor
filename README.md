@@ -1,6 +1,17 @@
-# gulp-recolor-svg
+# gulp-svg-recolor
 
 A gulp package for replacing colors within SVGs.
+
+## gulp-svg-recolor vs gulp-recolor-svg
+**This library is a fork of the gulp-recolor-svg plugin, which appeared
+to be unmaintained, but highly useful for me.**
+
+Thanks should go to Richard Clark for creating this project in the first place.
+
+The main differences between the two projects are
+- updated dependencies
+- internalising usage of Color module
+- adding yarn.lock
 
 ## Example
 
@@ -23,7 +34,7 @@ This gulpfile will generate a new SVG, `plus--red.svg`, containing a red plus sy
 
 ```javascript
 const gulp = require("gulp");
-const RecolorSvg = require("gulp-recolor-svg");
+const RecolorSvg = require("gulp-svg-recolor");
 const rename = require("gulp-rename");
 
 gulp.task("default", function(){
@@ -47,7 +58,7 @@ Given ``plus.svg``, this gulpfile will generate four SVGs: ``plus--hover.svg``, 
 
 ```javascript
 const gulp = require("gulp");
-const RecolorSvg = require("gulp-recolor-svg");
+const RecolorSvg = require("gulp-svg-recolor");
 
 gulp.task("default", function(){
 	gulp.src("plus.svg")
@@ -81,7 +92,7 @@ Colors are compared using the [CIE76 color difference algorithm](https://en.wiki
 Usage:
 
 ```javascript
-const RecolorSvg = require("gulp-recolor-svg");
+const RecolorSvg = require("gulp-svg-recolor");
 const Color = require('color');
 
 // You can use your own version of Color outside the library, just be sure
