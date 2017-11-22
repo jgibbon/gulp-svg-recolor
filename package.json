@@ -23,8 +23,7 @@
   ],
   "scripts": {
     "clean": "rm -r lib/",
-    "preinstall": "npm run preinstall",
-    "prepublish": "coffee -o lib/ -c src/",
+    "preinstall": "coffee -o lib/ -c src/",
     "test": "mocha --compilers coffee:coffee-script/register test/*Spec.coffee"
   },
   "devDependencies": {
