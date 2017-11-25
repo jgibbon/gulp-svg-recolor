@@ -20,9 +20,9 @@ Let's say I have the following SVG (named ``plus.svg``), a blue "+" symbol:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 15 15" enable-background="new 0 0 15 15" xml:space="preserve">
-	<path fill="#0000FF" d="M6.3,1.1v5.2H1.1c-0.7,0-0.7,0.5-0.7,1.2c0,0.7,0.1,1.2,0.7,1.2h5.2v5.2c0,0.7,0.5,0.7,1.2,0.7
-		c0.7,0,1.2-0.1,1.2-0.7V8.7h5.2c0.7,0,0.7-0.5,0.7-1.2c0-0.7-0.1-1.2-0.7-1.2H8.7V1.1c0-0.7-0.5-0.7-1.2-0.7
-		C6.8,0.4,6.3,0.5,6.3,1.1"/>
+    <path fill="#0000FF" d="M6.3,1.1v5.2H1.1c-0.7,0-0.7,0.5-0.7,1.2c0,0.7,0.1,1.2,0.7,1.2h5.2v5.2c0,0.7,0.5,0.7,1.2,0.7
+        c0.7,0,1.2-0.1,1.2-0.7V8.7h5.2c0.7,0,0.7-0.5,0.7-1.2c0-0.7-0.1-1.2-0.7-1.2H8.7V1.1c0-0.7-0.5-0.7-1.2-0.7
+        C6.8,0.4,6.3,0.5,6.3,1.1"/>
 </svg>
 ```
 
@@ -33,20 +33,20 @@ The simplest use case for this package is replacing one or more colors in an SVG
 This gulpfile will generate a new SVG, `plus--red.svg`, containing a red plus symbol in place of the blue symbol:
 
 ```javascript
-const gulp = require("gulp");
-const RecolorSvg = require("gulp-svg-recolor");
-const rename = require("gulp-rename");
+const gulp = require('gulp');
+const RecolorSvg = require('gulp-svg-recolor');
+const rename = require('gulp-rename');
 
-gulp.task("default", function(){
-	gulp.src("plus.svg")
-		.pipe(RecolorSvg.Replace(
-			[ RecolorSvg.ColorMatcher("blue") ],
-			[ "red" ]
-		))
-		.pipe(rename({
-			suffix: "--red"
-		}))
-		.pipe(gulp.dest("./"));
+gulp.task('default', function(){
+    gulp.src('plus.svg')
+        .pipe(RecolorSvg.Replace(
+            [RecolorSvg.ColorMatcher('blue')],
+            ['red']
+        ))
+        .pipe(rename({
+            suffix: '--red'
+        }))
+        .pipe(gulp.dest('./'));
 });
 ```
 
@@ -57,19 +57,19 @@ This package can also be used to easily generate multiple variants of an input i
 Given ``plus.svg``, this gulpfile will generate four SVGs: ``plus--hover.svg``, ``plus--active.svg``, ``plus--focus.svg``, and ``plus--disabled.svg``, each with a different colored plus symbol:
 
 ```javascript
-const gulp = require("gulp");
-const RecolorSvg = require("gulp-svg-recolor");
+const gulp = require('gulp');
+const RecolorSvg = require('gulp-svg-recolor');
 
-gulp.task("default", function(){
-	gulp.src("plus.svg")
-		.pipe(RecolorSvg.GenerateVariants(
-			[ RecolorSvg.ColorMatcher("blue") ],
-			[ { suffix: "--hover", colors: [ "red" ] },
-				{ suffix: "--active", colors: [ "yellow" ] },
-				{ suffix: "--focus", colors: [ "cyan" ] },
-				{ suffix: "--disabled", colors: [ "#ccc" ] } ]
-		))
-		.pipe(gulp.dest("./"));
+gulp.task('default', function(){
+    gulp.src('plus.svg')
+        .pipe(RecolorSvg.GenerateVariants(
+            [RecolorSvg.ColorMatcher('blue')],
+            [{ suffix: '--hover', colors: ['red'] },
+                { suffix: '--active', colors: ['yellow'] },
+                { suffix: '--focus', colors: ['cyan'] },
+                { suffix: '--disabled', colors: ['#ccc'] }]
+        ))
+        .pipe(gulp.dest('./'));
 });
 ```
 
@@ -92,17 +92,17 @@ Colors are compared using the [CIE76 color difference algorithm](https://en.wiki
 Usage:
 
 ```javascript
-const RecolorSvg = require("gulp-svg-recolor");
+const RecolorSvg = require('gulp-svg-recolor');
 const Color = require('color');
 
 // You can use your own version of Color outside the library, just be sure
 // to convert it back to a valid CSS color value, like hex.
-const lighterRed = Color("red").lighten(0.02).hex();
+const lighterRed = Color('red').lighten(0.02).hex();
 
-matcher = RecolorSvg.ColorMatcher("red", 2);
+matcher = RecolorSvg.ColorMatcher('red', 2);
 
 matcher(lighterRed); # returns true
-matcher("blue"); # returns false
+matcher('blue'); # returns false
 ```
 
 ### GenerateVariants(matcherFunctions, variants)
