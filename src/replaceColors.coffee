@@ -29,7 +29,12 @@ module.exports = (stringData, matchers, destColors) ->
   propertiesToReplace = ["fill", "stroke", "stop-color"]
 
   getNewColor = (stringColorValue) ->
-    if stringColorValue.indexOf('url') == -1
+    if stringColorValue.indexOf('url') >= 0
+      # Gradient style values look like fill:url(gradientName)
+      # and so should be left untouched.
+      outputColor = stringColorValue
+
+    else
       if stringColorValue.toLowerCase() in SPECIAL_PAINT_TYPES
         return stringColorValue
 
@@ -39,8 +44,7 @@ module.exports = (stringData, matchers, destColors) ->
       for matcher, index in matchers
         if matcher(color)
           outputColor = Color(destColors[index]).hex()
-    else
-      outputColor = stringColorValue
+
     return outputColor
 
   replacePropertiesInDeclarations = (declarations) ->
