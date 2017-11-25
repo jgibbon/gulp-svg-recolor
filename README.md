@@ -6,6 +6,8 @@ A gulp package for replacing colors within SVGs.
 **This library is a fork of the gulp-recolor-svg plugin, which appeared
 to be unmaintained, but highly useful for me.**
 
+**This project uses yarn**
+
 Thanks should go to Richard Clark for creating this project in the first place.
 
 The main differences between the two projects are
