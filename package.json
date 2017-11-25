@@ -1,6 +1,6 @@
 {
   "author": "Gavin King",
-  "version": "1.0.0-rc3",
+  "version": "1.0.0",
   "main": "./lib/RecolorSvg.js",
   "name": "gulp-svg-recolor",
   "repository": "plumpnation/gulp-svg-recolor",
