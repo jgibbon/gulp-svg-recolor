@@ -67,3 +67,16 @@ describe "replaceColors", () ->
     actualOutput = replaceColors(input, [ identity(true) ], [ "blue" ])
     actualStylesheet = extractStylesheet(actualOutput)
     expect(actualStylesheet).to.equal(expectedStylesheet)
+
+  it "should replace a stop-color property in a <stop> tag", () ->
+    input = wrapAsSvg('<stop stop-color="red"/>')
+    expectedOutput = wrapAsSvg('<stop stop-color="#0000FF"/>')
+
+    actualOutput = replaceColors(input, [ identity(true) ], [ "blue" ])
+    expect(actualOutput).to.equal(expectedOutput)
+
+  it "should not replace a style attribute fill rule", () ->
+    input = wrapAsSvg('<rect style="fill:url(#Gradient1);"/>')
+
+    actualOutput = replaceColors(input, [ identity(true) ], [ "blue" ])
+    expect(actualOutput).to.equal(input)

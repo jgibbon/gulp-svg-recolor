@@ -26,18 +26,24 @@ module.exports = (stringData, matchers, destColors) ->
   $ = cheerio.load stringData,
     { xmlMode: true }
 
-  propertiesToReplace = ["fill", "stroke"]
+  propertiesToReplace = ["fill", "stroke", "stop-color"]
 
   getNewColor = (stringColorValue) ->
-    if stringColorValue.toLowerCase() in SPECIAL_PAINT_TYPES
-      return stringColorValue
+    if stringColorValue.indexOf('url') >= 0
+      # Gradient style values look like fill:url(gradientName)
+      # and so should be left untouched.
+      outputColor = stringColorValue
 
-    color = Color(stringColorValue)
-    outputColor = stringColorValue
+    else
+      if stringColorValue.toLowerCase() in SPECIAL_PAINT_TYPES
+        return stringColorValue
 
-    for matcher, index in matchers
-      if matcher(color)
-        outputColor = Color(destColors[index]).hex()
+      color = Color(stringColorValue)
+      outputColor = stringColorValue
+
+      for matcher, index in matchers
+        if matcher(color)
+          outputColor = Color(destColors[index]).hex()
 
     return outputColor
 
