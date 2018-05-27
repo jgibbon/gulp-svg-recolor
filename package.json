@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./lib/RecolorSvg.js",
   "name": "gulp-svg-recolor",
-  "repository": "plumpnation/gulp-svg-recolor",
+  "repository": "itslearning/gulp-svg-recolor",
   "description": "Gulp plugin for recoloring SVGs",
   "license": "MIT",
   "dependencies": {
