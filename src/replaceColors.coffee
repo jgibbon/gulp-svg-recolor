@@ -43,7 +43,8 @@ module.exports = (stringData, matchers, destColors) ->
 
       for matcher, index in matchers
         if matcher(color)
-          outputColor = Color(destColors[index]).hex()
+          outputColor = destColors[index] 
+          #Color().hex()
 
     return outputColor
 
